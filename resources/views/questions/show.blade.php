@@ -127,7 +127,7 @@
           }
         }
       ?>
-      @foreach ($replies as $index => $reply)
+      @foreach ($replies as $reply)
       <div class="reply">
         <div class="row">
           <div class="column">
@@ -143,11 +143,6 @@
                 @endif
               @endif
             </div>
-            @if ($reply['reply_id'])
-            <div class="reply-of-reply">
-              <i class="fa fa-reply"></i> <i>{{ $replies[$index - 1]['user']['name'] }}</i>
-            </div>
-            @endif
             {{ nl2br(e($reply['reply'])) }}
             <div class="actions">
               <small>
