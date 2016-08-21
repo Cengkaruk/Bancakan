@@ -23,7 +23,7 @@
           echo implode(', ', $topics);
           ?>
           <br>
-          <small>12 answers - {{ $question->created_at->diffForHumans() }}</small><br>
+          <small>{{ $question->answers->count() }} answers - {{ $question->created_at->diffForHumans() }}</small><br>
           @if ($question->anonymouse)
           <strong>Anonymouse</strong>
           @else
@@ -46,37 +46,57 @@
   </div>
 </div>
 <br>
+<div id="answer-box" class="row" style="display: none">
+  <div class="column column-67 column-offset-10">
+    <form method="POST" action="{{ route('answers.store', $question->slug) }}" style="margin-bottom: 0">
+      {{ csrf_field() }}
+      <fieldset>
+        <textarea name="answer" rows="8" cols="40"></textarea>
+        <button type="submit" class="button">Answer</button>
+        <div class="float-right">
+          <input name="anonymouse" id="anonymouse" type="checkbox">
+          <label class="label-inline" for="anonymouse">Anonymouse</label>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
 <div class="row">
   <div class="column column-offset-10">
-    <a href="#" class="button">Answer</a>
+    <button id="show-answer-box" class="button">Answer</button>
   </div>
 </div>
 <hr class="separator">
+
+@foreach ($question->answers as $answer)
 <div class="row list-answers">
   <div class="column answer">
     <div class="author">
-      <a href="#"><strong>Aji Kisworo Mukti</strong></a> - <i>Co founder at Sepetak and Pilamo</i>
+      @if ($answer->anonymouse)
+        <strong>Anonymouse</strong>
+      @else
+        <a href="{{ route('profiles.show.others', ($question->user->username) ? $question->user->username : $question->user->id) }}">
+          <strong>{{ $answer->user->name }}</strong>
+        </a>
+        @if ($answer->user->title)
+           - <i>{{ $answer->user->title }}</i>
+        @endif
+      @endif
     </div>
     <p>
-      Hi there,
-
-      The options are the same as buying many traditional businesses.
-    </p>
-    <p>
-      You can obviously use your own funds, raise funds from friends and family, use personal lines of credit, crowdfunding/investment or seek personal loans from financial institutions.
-    </p>
-    <p>
-      Any wise investor in your venture should require -- and you should have prepared -- financials for the online business you are purchasing. Does the online brand have tangible assets? Inventory? Existing sales/AR? What about long-term purchase orders or contracts?
-    </p>
-    <p>
-      Where I see most entrepreneurs stumble is buying too much into "blue sky" value, that is, believing the sellers opinion of what future value the brand/company may have. You have to take that into consideration, but it should not be "the" deciding factor. If the business is truly a cash cow, as many buyers would want you to believe, why are they selling it? Do you see opportunity for growth? What skill set or leverage do you have that will accelerate that growth or expand the market of your acquisition?
-
-      Again, funding options are generally the same between traditional businesses and online businesses. Investors/lenders will require the same due diligence and financials to establish an assess the level of risk.
-
-      All the best
+      {{ nl2br(e($answer->answer)) }}
     </p>
     <div class="actions">
-      <small><a href="#">Reply</a> - <a href="#">Upvote (23)</a> - <a href="#">Share</a> - <a href="#">Report</a></small>
+      <small>
+        @if (Auth::check())
+        @if ($answer->user_id == Auth::user()->id)
+        <a href="{{ route('answers.delete', [$question->slug, $answer->id]) }}">Delete</a> -
+        @endif
+        @endif
+        <a href="#">Reply</a> -
+        <a href="{{ route('answers.vote', [$question->slug, $answer->id]) }}">Upvote ({{ $answer->votes->count() }})</a> -
+        <a href="{{ route('answers.report', [$question->slug, $answer->id]) }}">Report ({{ $answer->reports->count() }})</a>
+      </small>
     </div>
     <div class="list-reply">
       <div class="row">
@@ -88,7 +108,7 @@
             You can obviously use your own funds, raise funds from friends and family, use personal lines of credit, crowdfunding/investment or seek personal loans from financial institutions.
           </p>
           <div class="actions">
-            <small><a href="#">Reply</a> - <a href="#">Upvote</a> - <a href="#">Share</a> - <a href="#">Report</a></small>
+            <small><a href="#">Reply</a> - <a href="#">Upvote ()</a> - <a href="#">Report</a></small>
           </div>
         </div>
       </div>
@@ -104,11 +124,16 @@
             You can obviously use your own funds, raise funds from friends and family, use personal lines of credit, crowdfunding/investment or seek personal loans from financial institutions.
           </p>
           <div class="actions">
-            <small><a href="#">Reply</a> - <a href="#">Upvote (2)</a> - <a href="#">Share</a> - <a href="#">Report</a></small>
+            <small><a href="#">Reply</a> - <a href="#">Upvote (2)</a> - <a href="#">Report</a></small>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+@endforeach
+@endsection
+
+@section('javascript')
+<script type="text/javascript" src="{{ elixir('js/all.js') }}"></script>
 @endsection

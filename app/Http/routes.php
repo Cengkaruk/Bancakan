@@ -82,3 +82,23 @@ Route::get('/{slug}/delete', [
   'as' => 'questions.delete',
   'uses' => 'QuestionController@delete'
 ]);
+
+Route::post('/{slug}/answer', [
+  'as' => 'answers.store',
+  'uses' => 'AnswerController@store'
+]);
+
+Route::get('/{slug}/answer/{id}/delete', [
+  'as' => 'answers.delete',
+  'uses' => 'AnswerController@delete'
+]);
+
+Route::get('/{slug}/answer/{id}/vote', [
+  'as' => 'answers.vote',
+  'uses' => 'AnswerController@vote'
+]);
+
+Route::get('/{slug}/answer/{id}/report', [
+  'as' => 'answers.report',
+  'uses' => 'AnswerController@report'
+]);

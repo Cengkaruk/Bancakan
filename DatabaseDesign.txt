@@ -36,6 +36,7 @@ answers
   - user_id
   - answer
   - blocked
+  - anonymouse
   - timestamp
 
 vote_answers

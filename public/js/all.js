@@ -9,6 +9,12 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
 $(document).ready(function() {
   // Ask
   $('select').select2();
+
+  // Answer
+  $('#show-answer-box').click(function() {
+    $(this).hide();
+    $('#answer-box').show();
+  });
 });
 
 //# sourceMappingURL=all.js.map

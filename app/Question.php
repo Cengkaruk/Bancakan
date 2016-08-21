@@ -30,4 +30,9 @@ class Question extends Model
   {
     return $this->hasMany('App\VoteQuestion');
   }
+
+  public function answers()
+  {
+    return $this->hasMany('App\Answer');
+  }
 }
