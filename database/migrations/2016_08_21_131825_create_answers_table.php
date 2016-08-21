@@ -16,7 +16,7 @@ class CreateAnswersTable extends Migration
       $table->increments('id');
       $table->integer('user_id');
       $table->integer('question_id');
-      $table->string('answer');
+      $table->text('answer');
       $table->boolean('blocked')->default(False);
       $table->boolean('anonymouse')->default(False);
       $table->timestamps();
