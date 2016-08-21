@@ -101,6 +101,19 @@ class QuestionController extends Controller
     return redirect()->back();
   }
 
+  public function delete($slug)
+  {
+    $question = Question::where('slug', '=', $slug)
+      ->where('user_id', '=', Auth::user()->id)
+      ->first();
+
+    if ($question) {
+      $question->delete();
+    }
+
+    return redirect('/');
+  }
+
   /* Slug Thing */
   public function createSlug($title, $id = 0)
   {

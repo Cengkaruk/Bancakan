@@ -32,7 +32,14 @@
             @endif
           </a>
           <br>
-          <small><a href="{{ route('questions.vote', $question->slug) }}">Upvote ({{ $question->votes->count() }})</a> - <a href="#">Share</a> - <a href="{{ route('questions.report', $question->slug) }}">Report ({{ $question->reports->count() }})</a></small>
+          <small>
+            @if (Auth::check())
+              @if ($question->user_id == Auth::user()->id)
+              <a href="{{ route('questions.delete', $question->slug) }}">Delete</a> -
+              @endif
+            @endif
+            <a href="{{ route('questions.vote', $question->slug) }}">Upvote ({{ $question->votes->count() }})</a> - <a href="#">Share</a> - <a href="{{ route('questions.report', $question->slug) }}">Report ({{ $question->reports->count() }})</a>
+          </small>
         </p>
       </div>
     </div>

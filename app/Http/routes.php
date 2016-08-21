@@ -72,3 +72,8 @@ Route::get('/{slug}/vote', [
   'as' => 'questions.vote',
   'uses' => 'QuestionController@vote'
 ]);
+
+Route::get('/{slug}/delete', [
+  'as' => 'questions.delete',
+  'uses' => 'QuestionController@delete'
+]);

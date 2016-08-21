@@ -21,6 +21,7 @@ class CreateQuestionsTable extends Migration
       $table->boolean('blocked')->default(False);
       $table->boolean('anonymouse')->default(False);
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
