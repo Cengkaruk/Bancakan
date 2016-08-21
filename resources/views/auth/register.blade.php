@@ -24,7 +24,7 @@
         @endif
         <input name="password_confirmation" placeholder="Password Confirmation" type="password" class="{{ $errors->has('password_confirmation') ? 'outline-error' : '' }}">
         <input class="button-primary" value="Register" type="submit">
-        <p>By registering, you agree to our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></p>
+        <p>By registering, you agree to our <a href="#">Community Guidelines</a></p>
       </fieldset>
     </form>
   </div>

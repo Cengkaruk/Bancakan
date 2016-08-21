@@ -48,6 +48,11 @@ Route::get('/ask', [
   'uses' => 'QuestionController@ask'
 ]);
 
+Route::post('/ask', [
+  'as' => 'questions.ask.store',
+  'uses' => 'QuestionController@storeAsk'
+]);
+
 Route::get('/notification', [
   'as' => 'notifications',
   'uses' => 'NotifController@index'
@@ -56,4 +61,14 @@ Route::get('/notification', [
 Route::get('/{slug}', [
   'as' => 'questions.show',
   'uses' => 'QuestionController@show'
+]);
+
+Route::get('/{slug}/report', [
+  'as' => 'questions.report',
+  'uses' => 'QuestionController@report'
+]);
+
+Route::get('/{slug}/vote', [
+  'as' => 'questions.vote',
+  'uses' => 'QuestionController@vote'
 ]);

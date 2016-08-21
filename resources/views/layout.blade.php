@@ -24,4 +24,5 @@
     </section>
   </main>
 </body>
+@yield('javascript')
 </html>

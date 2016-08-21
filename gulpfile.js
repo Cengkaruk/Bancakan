@@ -14,8 +14,18 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
   mix.styles([
     'milligram.css',
+    'select2.css',
     'styles.css'
   ]);
 
-  mix.version('css/all.css');
+  mix.scripts([
+    'jquery-3.1.0.min.js',
+    'select2.min.js',
+    'scripts.js'
+  ]);
+
+  mix.version([
+    'css/all.css',
+    'js/all.js'
+  ]);
 });
