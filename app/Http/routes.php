@@ -117,3 +117,8 @@ Route::get('/{slug}/answer/{answer_id}/report/{reply_id}', [
   'as' => 'replies.report',
   'uses' => 'ReplyController@report'
 ]);
+
+Route::post('/{slug}/answer/{answer_id}/reply/{reply_id}', [
+  'as' => 'replies.reply',
+  'uses' => 'ReplyController@replyToReply'
+]);

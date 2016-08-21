@@ -116,32 +116,65 @@
           </form>
         </div>
       </div>
-      @foreach ($answer->replies as $reply)
-      <div class="row">
-        <div class="column">
-          <div class="author">
-            @if ($reply->anonymouse)
-              <strong>Anonymouse</strong>
-            @else
-              <a href="{{ route('profiles.show.others', ($reply->user->username) ? $reply->user->username : $reply->user->id) }}">
-                <strong>{{ $reply->user->name }}</strong>
-              </a>
-              @if ($reply->user->title)
-                 - <i>{{ $reply->user->title }}</i>
+      <?php
+        $replies = [];
+        foreach ($answer->replies as $answer_reply) {
+          array_push($replies, $answer_reply);
+          foreach($answer_reply as $reply_reply) {
+            if ($reply_reply['answer_id'] == $answer->id) {
+              array_push($replies, $reply_reply);
+            }
+          }
+        }
+      ?>
+      @foreach ($replies as $index => $reply)
+      <div class="reply">
+        <div class="row">
+          <div class="column">
+            <div class="author">
+              @if ($reply['anonymouse'])
+                <strong>Anonymouse</strong>
+              @else
+                <a href="{{ route('profiles.show.others', ($reply['user']['username']) ? $reply['user']['username'] : $reply['user']['id']) }}">
+                  <strong>{{ $reply['user']['name'] }}</strong>
+                </a>
+                @if ($reply['user']['title'])
+                   - <i>{{ $reply['user']['title'] }}</i>
+                @endif
               @endif
+            </div>
+            @if ($reply['reply_id'])
+            <div class="reply-of-reply">
+              <i class="fa fa-reply"></i> <i>{{ $replies[$index - 1]['user']['name'] }}</i>
+            </div>
             @endif
+            {{ nl2br(e($reply['reply'])) }}
+            <div class="actions">
+              <small>
+                @if (Auth::check())
+                @if ($reply['user_id'] == Auth::user()->id)
+                <a href="{{ route('replies.delete', [$question->slug, $answer->id, $reply['id']]) }}">Delete</a> -
+                @endif
+                @endif
+                <a href="#" class="show-reply-reply-box">Reply</a> -
+                <a href="{{ route('replies.report', [$question->slug, $answer->id, $reply['id']]) }}">Report</a>
+              </small>
+            </div>
           </div>
-          {{ nl2br(e($reply->reply)) }}
-          <div class="actions">
-            <small>
-              @if (Auth::check())
-              @if ($reply->user_id == Auth::user()->id)
-              <a href="{{ route('replies.delete', [$question->slug, $answer->id, $reply->id]) }}">Delete</a> -
-              @endif
-              @endif
-              <a href="#">Reply</a> -
-              <a href="{{ route('replies.report', [$question->slug, $answer->id, $reply->id]) }}">Report</a>
-            </small>
+        </div>
+        <div class="row reply-reply-box" style="display: none">
+          <div class="column column-67">
+            <form method="POST" action="{{ route('replies.reply', [$question->slug, $answer->id, $reply['id']]) }}" style="margin-bottom: 0">
+              {{ csrf_field() }}
+              <fieldset>
+                <textarea name="reply" rows="8" cols="40"></textarea>
+                <button type="submit" class="button">Reply</button>
+                <div class="float-right">
+                  <input name="anonymouse" id="anonymouse" type="checkbox">
+                  <label class="label-inline" for="anonymouse">Anonymouse</label>
+                </div>
+              </fieldset>
+            </form>
           </div>
         </div>
       </div>

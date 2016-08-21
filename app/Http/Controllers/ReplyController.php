@@ -64,4 +64,22 @@ class ReplyController extends Controller
 
     return redirect()->back();
   }
+
+  public function replyToReply($slug, $answer_id, $reply_id, Request $request)
+  {
+    $question = Question::where('slug', '=', $slug)->first();
+    $reply = Reply::find($reply_id);
+
+    if ($question && $reply) {
+      $reply = new Reply;
+      $reply->user_id = Auth::user()->id;
+      $reply->answer_id = $answer_id;
+      $reply->reply_id = $reply_id;
+      $reply->reply = $request->input('reply');
+      $reply->anonymouse = ($request->input('anonymouse')) ? $request->input('anonymouse') : False;
+      $reply->save();
+    }
+
+    return redirect()->back();
+  }
 }
