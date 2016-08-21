@@ -1,8 +1,7 @@
 <nav class="navigation">
   <section class="container">
     <a class="navigation-title" href="{{ route('questions.index') }}">
-      <img class="img" src="https://milligram.github.io/img/logo.svg" alt="Bancakan" title="Bancakan" height="30">
-      <h1 class="title">Bancakan</h1>
+      <img class="img" src="{{ asset('/images/logo.png') }}" alt="Bancakan" title="Bancakan" height="30">
     </a>
     @if(Auth::check())
     <ul class="navigation-list float-right">

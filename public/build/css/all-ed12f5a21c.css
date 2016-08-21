@@ -723,6 +723,16 @@ h6 {
   color: #606c76;
 }
 
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #f4f5f6;
+  text-align: center;
+}
+
 /* Signup */
 .signup {
   text-align: center;
@@ -751,7 +761,7 @@ h6 {
   line-height: 21px;
   color: #606060;
   position: relative;
-  background: #f7f7f7;
+  background: #f4f5f6;
   text-decoration: none;
 }
 
