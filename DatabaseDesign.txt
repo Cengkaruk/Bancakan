@@ -1,0 +1,64 @@
+questions
+  - id
+  - question
+  - detail
+  - user_id
+  - blocked
+  - timestamp
+
+topics
+  - id
+  - topic
+  - timestamp
+
+topic_questions
+  - id
+  - question_id
+  - topic_id
+  - timestamp
+
+report_questions
+  - id
+  - question_id
+  - user_id
+  - timestamp
+
+answers
+  - id
+  - question_id
+  - user_id
+  - answer
+  - blocked
+  - timestamp
+
+vote_answers
+  - id
+  - answer_id
+  - user_id
+  - timestamp
+
+report_answers
+  - id
+  - answer_id
+  - user_id
+  - timestamp
+
+replies
+  - id
+  - answer_id
+  - reply_id
+  - user_id
+  - reply
+  - timestamp
+
+vote_replies
+  - id
+  - reply_id
+  - user_id
+  - timestamp
+
+report_replies
+  - id
+  - reply_id
+  - user_id
+  - timestamp
