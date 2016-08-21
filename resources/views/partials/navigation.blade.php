@@ -7,7 +7,7 @@
     @if(Auth::check())
     <ul class="navigation-list float-right">
       <li class="navigation-item">
-        <a class="navigation-link" href="#"><i class="fa fa-bell-o"></i></a>
+        <a class="navigation-link" href="{{ route('notifications') }}"><i class="fa fa-bell-o"></i></a>
       </li>
       <li class="navigation-item">
         <a class="navigation-link" href="{{ route('profiles.show') }}">{{ Auth::user()->name }}</a>

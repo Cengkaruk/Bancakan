@@ -48,6 +48,11 @@ Route::get('/ask', [
   'uses' => 'QuestionController@ask'
 ]);
 
+Route::get('/notification', [
+  'as' => 'notifications',
+  'uses' => 'NotifController@index'
+]);
+
 Route::get('/{slug}', [
   'as' => 'questions.show',
   'uses' => 'QuestionController@show'
