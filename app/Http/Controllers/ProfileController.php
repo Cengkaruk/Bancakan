@@ -11,9 +11,20 @@ use Auth;
 
 class ProfileController extends Controller
 {
-  public function show()
+  public function show($username = NULL)
   {
-    return view('profiles.show');
+    if ($username) {
+      if (is_numeric($username)) {
+        $profile = User::find($username);
+      } else {
+        $profile = User::where('username', '=', $username)->first();
+      }
+    } else {
+      $profile = Auth::user();
+    }
+
+    return view('profiles.show')
+      ->with('profile', $profile);
   }
 
   public function edit()

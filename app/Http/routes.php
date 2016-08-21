@@ -43,6 +43,11 @@ Route::post('/profile/password', [
   'uses' => 'ProfileController@storePassword'
 ]);
 
+Route::get('/profile/{username}', [
+  'as' => 'profiles.show.others',
+  'uses' => 'ProfileController@show'
+]);
+
 Route::get('/ask', [
   'as' => 'questions.ask',
   'uses' => 'QuestionController@ask'

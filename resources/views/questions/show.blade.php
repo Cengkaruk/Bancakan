@@ -16,27 +16,27 @@
       <div class="column column-34">
         <p>
           <?php
-            $topics = [];
-            foreach ($question->topics as $topic) {
-              array_push($topics, $topic->topic);
-            }
-            echo implode(', ', $topics);
+          $topics = [];
+          foreach ($question->topics as $topic) {
+            array_push($topics, $topic->topic);
+          }
+          echo implode(', ', $topics);
           ?>
           <br>
           <small>12 answers - {{ $question->created_at->diffForHumans() }}</small><br>
-          <a href="#">
-            @if ($question->anonymouse)
-              <strong>Anonymouse</strong>
-            @else
-              <strong>{{ $question->user->name }}</strong>
-            @endif
+          @if ($question->anonymouse)
+          <strong>Anonymouse</strong>
+          @else
+          <a href="{{ route('profiles.show.others', ($question->user->username) ? $question->user->username : $question->user->id) }}">
+            <strong>{{ $question->user->name }}</strong>
           </a>
+          @endif
           <br>
           <small>
             @if (Auth::check())
-              @if ($question->user_id == Auth::user()->id)
-              <a href="{{ route('questions.delete', $question->slug) }}">Delete</a> -
-              @endif
+            @if ($question->user_id == Auth::user()->id)
+            <a href="{{ route('questions.delete', $question->slug) }}">Delete</a> -
+            @endif
             @endif
             <a href="{{ route('questions.vote', $question->slug) }}">Upvote ({{ $question->votes->count() }})</a> - <a href="#">Share</a> - <a href="{{ route('questions.report', $question->slug) }}">Report ({{ $question->reports->count() }})</a>
           </small>
