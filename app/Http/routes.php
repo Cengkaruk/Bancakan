@@ -102,3 +102,18 @@ Route::get('/{slug}/answer/{id}/report', [
   'as' => 'answers.report',
   'uses' => 'AnswerController@report'
 ]);
+
+Route::post('/{slug}/answer/{id}/reply', [
+  'as' => 'answers.reply',
+  'uses' => 'ReplyController@reply'
+]);
+
+Route::get('/{slug}/answer/{answer_id}/delete/{reply_id}', [
+  'as' => 'replies.delete',
+  'uses' => 'ReplyController@delete'
+]);
+
+Route::get('/{slug}/answer/{answer_id}/report/{reply_id}', [
+  'as' => 'replies.report',
+  'uses' => 'ReplyController@report'
+]);

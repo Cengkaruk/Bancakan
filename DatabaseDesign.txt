@@ -57,12 +57,8 @@ replies
   - reply_id
   - user_id
   - reply
-  - timestamp
-
-vote_replies
-  - id
-  - reply_id
-  - user_id
+  - blocked
+  - anonymouse
   - timestamp
 
 report_replies

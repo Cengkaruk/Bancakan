@@ -25,4 +25,9 @@ class Answer extends Model
   {
     return $this->hasMany('App\ReportAnswer');
   }
+
+  public function replies()
+  {
+    return $this->hasMany('App\Reply');
+  }
 }

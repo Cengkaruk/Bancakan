@@ -15,6 +15,13 @@ $(document).ready(function() {
     $(this).hide();
     $('#answer-box').show();
   });
+
+  // Reply
+  $('.show-reply-answer-box').click(function() {
+    console.log($(this).closest('.answer').find('.reply-answer-box'));
+    $(this).closest('.answer').find('.reply-answer-box').toggle();
+    return false;
+  });
 });
 
 //# sourceMappingURL=all.js.map
