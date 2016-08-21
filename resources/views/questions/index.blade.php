@@ -27,16 +27,20 @@
       ?>
     </small>
     <p class="list-question-title"><a href="/{{ $question->slug }}">{{ $question->question }}</a></p>
-    <small>12 answers - {{ $question->created_at->diffForHumans() }}</small>
+    <small>{{ $question->answers->count() }} answers - {{ $question->created_at->diffForHumans() }}</small>
+    @if ($question->answers->count() > 0)
     <a href="/{{ $question->slug }}" class="list-highlight-answer">
+      <?php $answer = $question->best_answer()->first()->answer; ?>
       <p>
-        Hi there,
-        The options are the same as buying many traditional businesses.
-        You can obviously use your own funds, raise funds from friends and family, use personal lines of credit, crowdfunding/investment or seek personal loans from financial institutions.
-        Any wise investor i…
+        {{ nl2br(e(str_limit($answer->answer, 330))) }}
       </p>
-      <strong>Aji Kisworo Mukti</strong>
+      @if ($answer->anonymouse)
+        <strong>Anonymouse</strong>
+      @else
+        <strong>Aji Kisworo Mukti</strong>
+      @endif
     </a>
+    @endif
   </div>
 </div>
 @endforeach

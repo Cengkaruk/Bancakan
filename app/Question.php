@@ -35,4 +35,9 @@ class Question extends Model
   {
     return $this->hasMany('App\Answer');
   }
+
+  public function best_answer()
+  {
+    return $this->answers->max('votes');
+  }
 }
