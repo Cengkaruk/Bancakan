@@ -81,7 +81,7 @@
           <strong>{{ $answer->user->name }}</strong>
         </a>
         @if ($answer->user->title)
-           - <i>{{ $answer->user->title }}</i>
+           - <i><small>{{ $answer->user->title }}</small></i>
         @endif
       @endif
     </div>
@@ -139,7 +139,7 @@
                   <strong>{{ $reply['user']['name'] }}</strong>
                 </a>
                 @if ($reply['user']['title'])
-                   - <i>{{ $reply['user']['title'] }}</i>
+                   - <i><small>{{ $reply['user']['title'] }}</small></i>
                 @endif
               @endif
             </div>
