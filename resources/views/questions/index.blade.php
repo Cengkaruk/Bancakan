@@ -45,6 +45,8 @@
 </div>
 @endforeach
 <div class="row pagination">
-  <button class="button button-outline">Load more</button>
+  <a href="{{ $questions->previousPageUrl() }}" class="button button-outline"><i class="fa fa-chevron-left"></i></a>
+  &nbsp;
+  <a href="{{ $questions->nextPageUrl() }}" class="button button-outline">Previous</a>
 </div>
 @endsection

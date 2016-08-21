@@ -17,7 +17,7 @@ class QuestionController extends Controller
 {
   public function index()
   {
-    $questions = Question::orderBy('created_at', 'DESC')->get();
+    $questions = Question::orderBy('created_at', 'DESC')->simplePaginate(15);
 
     return view('questions.index')
       ->with('questions', $questions);
