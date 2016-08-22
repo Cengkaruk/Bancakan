@@ -18,11 +18,6 @@ Route::get('/', [
 
 Route::auth();
 
-Route::get('/profile/{username}', [
-  'as' => 'profiles.show.others',
-  'uses' => 'ProfileController@show'
-]);
-
 Route::group(['middleware' => ['auth']], function () {
 
   Route::get('/profile', [
@@ -125,4 +120,9 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/{slug}', [
   'as' => 'questions.show',
   'uses' => 'QuestionController@show'
+]);
+
+Route::get('/profile/{username}', [
+  'as' => 'profiles.show.others',
+  'uses' => 'ProfileController@show'
 ]);
