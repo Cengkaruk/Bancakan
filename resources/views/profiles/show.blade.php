@@ -19,13 +19,13 @@
         <tr>
           <td>
             <div>
-              <h3>15</h3>
+              <h3>{{ $profile->questions->count() }}</h3>
               <em>Questions</em>
             </div>
           </td>
           <td>
             <div>
-              <h3>12</h3>
+              <h3>{{ $profile->answers->count() }}</h3>
               <em>Answers</em>
             </div>
           </td>
