@@ -225,7 +225,7 @@ services:
         build: ./volumes/data
         volumes:
             - ./data/mysql:/var/lib/mysql
-            - ./data/postgres:/var/lib/postgresql
+            - ./data/postgres:/var/lib/postgresql/data
             - ./data/mariadb:/var/lib/mariadb
             - ./data/memcached:/var/lib/memcached
             - ./data/redis:/data
