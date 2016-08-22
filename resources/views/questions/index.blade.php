@@ -39,7 +39,7 @@
         @if ($answer->anonymouse)
           <strong>Anonymouse</strong>
         @else
-          <strong>Aji Kisworo Mukti</strong>
+          <strong>{{ $answer->user->name }}</strong>
         @endif
       </a>
       @else
@@ -51,7 +51,7 @@
         @if ($answer->anonymouse)
           <strong>Anonymouse</strong>
         @else
-          <strong>Aji Kisworo Mukti</strong>
+          <strong>{{ $answer->user->name }}</strong>
         @endif
       </a>
       @endif
