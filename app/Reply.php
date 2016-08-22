@@ -21,6 +21,11 @@ class Reply extends Model
     return $this->hasMany('App\Reply');
   }
 
+  public function getReply($reply_id)
+  {
+    return Reply::find($reply_id);
+  }
+
   public static function getReplyAuthor($reply_id)
   {
     return Reply::find($reply_id)->user;

@@ -137,9 +137,16 @@
               @endif
             </div>
             @if ($reply->reply_id)
-            <div class="reply-of-reply">
-              <i class="fa fa-reply"></i><i> {{ $reply->getReplyAuthor($reply->reply_id)->name }}</i>
-            </div>
+              <?php $reply_of_reply = $reply->getReply($reply->reply_id) ?>
+              @if ($reply_of_reply->anonymouse)
+                <div class="reply-of-reply">
+                  <i class="fa fa-reply"></i><i> Anonymouse</i>
+                </div>
+              @else
+              <div class="reply-of-reply">
+                <i class="fa fa-reply"></i><i> {{ $reply->getReplyAuthor($reply->reply_id)->name }}</i>
+              </div>
+              @endif
             @endif
             {!! nl2br(e($reply->reply)) !!}
             <div class="actions">
