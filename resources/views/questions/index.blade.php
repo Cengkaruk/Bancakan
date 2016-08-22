@@ -62,6 +62,6 @@
 <div class="row pagination">
   <a href="{{ $questions->previousPageUrl() }}" class="button button-outline"><i class="fa fa-chevron-left"></i></a>
   &nbsp;
-  <a href="{{ $questions->nextPageUrl() }}" class="button button-outline">Previous</a>
+  <a href="{{ $questions->nextPageUrl() }}" class="button button-outline"><i class="fa fa-chevron-right"></i></a>
 </div>
 @endsection
