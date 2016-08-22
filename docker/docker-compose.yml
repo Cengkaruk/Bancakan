@@ -116,9 +116,9 @@ services:
         ports:
             - "5432:5432"
         environment:
-            POSTGRES_DB: homestead
-            POSTGRES_USER: homestead
-            POSTGRES_PASSWORD: secret
+            POSTGRES_DB: bancakan
+            POSTGRES_USER: bancakan
+            POSTGRES_PASSWORD: 003687f8bf27afcdd
 
 ### MariaDB Container #######################################
 
