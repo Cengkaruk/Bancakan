@@ -71,7 +71,7 @@
 </div>
 @endif
 <hr class="separator">
-
+@if (Auth::check())
 @foreach ($question->answers as $answer)
 <div class="row list-answers">
   <div class="column answer">
@@ -178,6 +178,9 @@
   </div>
 </div>
 @endforeach
+@else
+<p>Login to see the answers</p>
+@endif
 @endsection
 
 @section('javascript')
