@@ -38,9 +38,9 @@
             <a href="{{ route('questions.delete', $question->slug) }}">Delete</a> -
             @endif
             @endif
-            <a href="{{ route('questions.vote', $question->slug) }}">Upvote ({{ $question->votes->count() }})</a> -
+            <a href="{{ (Auth::check()) ? route('questions.vote', $question->slug) : '#' }}">Upvote ({{ $question->votes->count() }})</a> -
             <a href="#">Share</a> -
-            <a href="{{ route('questions.report', $question->slug) }}">Report</a>
+            <a href="{{ (Auth::check()) ? route('questions.report', $question->slug) : '#' }}">Report</a>
           </small>
         </p>
       </div>
@@ -48,6 +48,7 @@
   </div>
 </div>
 <br>
+@if (Auth::check())
 <div id="answer-box" class="row" style="display: none">
   <div class="column column-67 column-offset-10">
     <form method="POST" action="{{ route('answers.store', $question->slug) }}" style="margin-bottom: 0">
@@ -68,6 +69,7 @@
     <button id="show-answer-box" class="button">Answer</button>
   </div>
 </div>
+@endif
 <hr class="separator">
 
 @foreach ($question->answers as $answer)
@@ -86,7 +88,7 @@
       @endif
     </div>
     <p>
-      {{ nl2br(e($answer->answer)) }}
+      {!! nl2br(e($answer->answer)) !!}
     </p>
     <div class="actions">
       <small>
@@ -96,11 +98,12 @@
         @endif
         @endif
         <a href="#" class="show-reply-answer-box">Reply</a> -
-        <a href="{{ route('answers.vote', [$question->slug, $answer->id]) }}">Upvote ({{ $answer->votes->count() }})</a> -
-        <a href="{{ route('answers.report', [$question->slug, $answer->id]) }}">Report</a>
+        <a href="{{ (Auth::check()) ? route('answers.vote', [$question->slug, $answer->id]) : '#' }}">Upvote ({{ $answer->votes->count() }})</a> -
+        <a href="{{ (Auth::check()) ? route('answers.report', [$question->slug, $answer->id]) : '#' }}">Report</a>
       </small>
     </div>
     <div class="list-reply">
+      @if (Auth::check())
       <div class="row reply-answer-box" style="display: none">
         <div class="column column-67">
           <form method="POST" action="{{ route('answers.reply', [$question->slug, $answer->id]) }}" style="margin-bottom: 0">
@@ -116,6 +119,7 @@
           </form>
         </div>
       </div>
+      @endif
       <?php
         $replies = [];
         foreach ($answer->replies as $answer_reply) {
@@ -143,20 +147,21 @@
                 @endif
               @endif
             </div>
-            {{ nl2br(e($reply['reply'])) }}
+            {!! nl2br(e($reply['reply'])) !!}
             <div class="actions">
               <small>
                 @if (Auth::check())
                 @if ($reply['user_id'] == Auth::user()->id)
-                <a href="{{ route('replies.delete', [$question->slug, $answer->id, $reply['id']]) }}">Delete</a> -
+                <a href="{{ (Auth::check()) ? route('replies.delete', [$question->slug, $answer->id, $reply['id']]) : '#' }}">Delete</a> -
                 @endif
                 @endif
                 <a href="#" class="show-reply-reply-box">Reply</a> -
-                <a href="{{ route('replies.report', [$question->slug, $answer->id, $reply['id']]) }}">Report</a>
+                <a href="{{ (Auth::check()) ? route('replies.report', [$question->slug, $answer->id, $reply['id']]) : '#' }}">Report</a>
               </small>
             </div>
           </div>
         </div>
+        @if (Auth::check())
         <div class="row reply-reply-box" style="display: none">
           <div class="column column-67">
             <form method="POST" action="{{ route('replies.reply', [$question->slug, $answer->id, $reply['id']]) }}" style="margin-bottom: 0">
@@ -172,6 +177,7 @@
             </form>
           </div>
         </div>
+        @endif
       </div>
       @endforeach
     </div>

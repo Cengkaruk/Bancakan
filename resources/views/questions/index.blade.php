@@ -10,7 +10,7 @@
     </form>
   </div>
   <div class="column">
-    <a href="{{ route('questions.ask') }}" class="button">Ask a Question</a>
+    <a href="{{ (Auth::check()) ? route('questions.ask') : url('/register') }}" class="button">Ask a Question</a>
   </div>
 </div>
 <hr class="separator">
@@ -29,17 +29,32 @@
     <p class="list-question-title"><a href="/{{ $question->slug }}">{{ $question->question }}</a></p>
     <small>{{ $question->answers->count() }} answers - {{ $question->created_at->diffForHumans() }}</small>
     @if ($question->answers->count() > 0)
-    <a href="/{{ $question->slug }}" class="list-highlight-answer">
-      <?php $answer = $question->best_answer()->first()->answer; ?>
-      <p>
-        {{ nl2br(e(str_limit($answer->answer, 330))) }}
-      </p>
-      @if ($answer->anonymouse)
-        <strong>Anonymouse</strong>
+      <?php $answer = $question->best_answer(); ?>
+      @if (count($answer) > 0)
+      <a href="/{{ $question->slug }}" class="list-highlight-answer">
+        <?php $answer = $answer->first()->answer ?>
+        <p>
+          {!! nl2br(e(str_limit($answer->answer, 330))) !!}
+        </p>
+        @if ($answer->anonymouse)
+          <strong>Anonymouse</strong>
+        @else
+          <strong>Aji Kisworo Mukti</strong>
+        @endif
+      </a>
       @else
-        <strong>Aji Kisworo Mukti</strong>
+      <a href="/{{ $question->slug }}" class="list-highlight-answer">
+        <?php $answer = $question->answers->first() ?>
+        <p>
+          {!! nl2br(e(str_limit($answer->answer, 330))) !!}
+        </p>
+        @if ($answer->anonymouse)
+          <strong>Anonymouse</strong>
+        @else
+          <strong>Aji Kisworo Mukti</strong>
+        @endif
+      </a>
       @endif
-    </a>
     @endif
   </div>
 </div>
