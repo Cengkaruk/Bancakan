@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#f4f5f6">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Cengkaruk">
+  <meta name="author" content="Bancakan">
   <meta name="description" content="Bancakan - Startup advice from the community">
   <title>Bancakan - Startup advice from the community</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
