@@ -6,6 +6,9 @@
     @if(Auth::check())
     <ul class="navigation-list float-right">
       <li class="navigation-item">
+        <a class="navigation-link" href="https://github.com/BancakanID/Bancakan/issues" target="_blank"><i class="fa fa-bug"></i></a>
+      </li>
+      <li class="navigation-item">
         <a class="navigation-link" href="{{ route('notifications') }}"><i class="fa fa-bell-o"></i></a>
       </li>
       <li class="navigation-item">
