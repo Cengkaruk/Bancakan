@@ -17,6 +17,8 @@ class ReplyController extends Controller
 {
   public function reply($slug, $id, Request $request)
   {
+    $this->validate($request, ['reply' => 'required']);
+
     $question = Question::where('slug', '=', $slug)->first();
     $answer = Answer::find($id);
 
@@ -67,6 +69,8 @@ class ReplyController extends Controller
 
   public function replyToReply($slug, $answer_id, $reply_id, Request $request)
   {
+    $this->validate($request, ['reply' => 'required']);
+
     $question = Question::where('slug', '=', $slug)->first();
     $reply = Reply::find($reply_id);
 

@@ -109,7 +109,7 @@
           <form method="POST" action="{{ route('answers.reply', [$question->slug, $answer->id]) }}" style="margin-bottom: 0">
             {{ csrf_field() }}
             <fieldset>
-              <textarea name="reply" rows="8" cols="40"></textarea>
+              <textarea name="reply" rows="8" cols="40" required>{{ old('reply') }}</textarea>
               <button type="submit" class="button">Reply</button>
               <div class="float-right">
                 <input name="anonymouse" id="anonymouse" type="checkbox">
@@ -168,7 +168,7 @@
             <form method="POST" action="{{ route('replies.reply', [$question->slug, $answer->id, $reply->id]) }}" style="margin-bottom: 0">
               {{ csrf_field() }}
               <fieldset>
-                <textarea name="reply" rows="8" cols="40"></textarea>
+                <textarea name="reply" rows="8" cols="40" required>{{ old('reply') }}</textarea>
                 <button type="submit" class="button">Reply</button>
                 <div class="float-right">
                   <input name="anonymouse" id="anonymouse" type="checkbox">
