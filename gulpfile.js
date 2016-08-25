@@ -21,6 +21,7 @@ elixir(function(mix) {
   mix.scripts([
     'jquery-3.1.0.min.js',
     'select2.min.js',
+    'jquery.timeago.js',
     'scripts.js'
   ]);
 
