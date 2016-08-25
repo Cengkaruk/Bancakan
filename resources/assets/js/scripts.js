@@ -19,4 +19,7 @@ $(document).ready(function() {
     $(this).closest('.reply').find('.reply-reply-box').toggle();
     return false;
   });
+
+  // Show dynamic time ago
+  $('time.timeago').timeago();
 });
