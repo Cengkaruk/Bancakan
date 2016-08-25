@@ -10,11 +10,11 @@
         @if ($errors->has('name'))
           <small class="float-left">{{ $errors->first('name') }}</small>
         @endif
-        <input name="name" placeholder="Fullname" type="text" class="{{ $errors->has('name') ? 'outline-error' : '' }}">
+        <input name="name" value="{{ old('name') }}" placeholder="Fullname" type="text" class="{{ $errors->has('name') ? 'outline-error' : '' }}">
         @if ($errors->has('email'))
           <small class="float-left">{{ $errors->first('email') }}</small>
         @endif
-        <input name="email" placeholder="Email" type="email" class="{{ $errors->has('email') ? 'outline-error' : '' }}">
+        <input name="email" value="{{ old('email') }}" placeholder="Email" type="email" class="{{ $errors->has('email') ? 'outline-error' : '' }}">
         @if ($errors->has('password'))
           <small class="float-left">{{ $errors->first('password') }}</small>
         @endif

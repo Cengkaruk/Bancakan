@@ -15,9 +15,9 @@
       {{ csrf_field() }}
       <fieldset>
         <label>Question</label>
-        <textarea name="question" placeholder="Enter your question"></textarea>
+        <textarea name="question" placeholder="Enter your question">{{ old('question') }}</textarea>
         <label>Details</label>
-        <textarea name="detail" placeholder="Provide more details" rows="10" style="height: inherit"></textarea>
+        <textarea name="detail" placeholder="Provide more details" rows="10" style="height: inherit">{{ old('detail') }}</textarea>
         <label>Topics</label>
         <select name="topics[]" multiple="multiple">
           <option value="Branding">Branding</option>
@@ -70,7 +70,7 @@
         <br><br>
         <input class="button-primary" value="Ask your Question" type="submit">
         <div class="float-right">
-          <input name="anonymouse" id="anonymouse" type="checkbox">
+          <input name="anonymouse" id="anonymouse" type="checkbox" {{ old('anonymouse') ? 'checked' : '' }}>
           <label class="label-inline" for="anonymouse">Anonymouse</label>
         </div>
       </fieldset>

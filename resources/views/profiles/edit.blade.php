@@ -15,15 +15,15 @@
       {{ csrf_field() }}
       <fieldset>
         <label>Username</label>
-        <input type="text" name="username" placeholder="Mentionable username" value="{{ Auth::user()->username }}">
+        <input type="text" name="username" placeholder="Mentionable username" value="{{ old('username', Auth::user()->username) }}">
         <label>Name</label>
-        <input type="text" name="name" placeholder="Your fullname" value="{{ Auth::user()->name }}">
+        <input type="text" name="name" placeholder="Your fullname" value="{{ old('name', Auth::user()->name) }}">
         <label>Title</label>
-        <input type="text" name="title" placeholder="Founder of...or something else" value="{{ Auth::user()->title }}">
+        <input type="text" name="title" placeholder="Founder of...or something else" value="{{ old('title', Auth::user()->title) }}">
         <label>Location</label>
-        <input type="text" name="location" placeholder="Your location" value="{{ Auth::user()->location }}">
+        <input type="text" name="location" placeholder="Your location" value="{{ old('location', Auth::user()->location) }}">
         <label>Bio</label>
-        <textarea name="bio" placeholder="About yourself">{{ Auth::user()->bio }}</textarea>
+        <textarea name="bio" placeholder="About yourself">{{ old('bio', Auth::user()->bio) }}</textarea>
         <input class="button-primary" value="Save" type="submit">
       </fieldset>
     </form>
