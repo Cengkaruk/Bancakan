@@ -14,9 +14,9 @@ class CreateRepliesTable extends Migration
     {
       Schema::create('replies', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('user_id');
-        $table->integer('answer_id')->nullable();
-        $table->integer('reply_id')->nullable();
+        $table->unsignedinteger('user_id');
+        $table->unsignedinteger('answer_id')->nullable();
+        $table->unsignedinteger('reply_id')->nullable();
         $table->string('reply');
         $table->boolean('blocked')->default(False);
         $table->boolean('anonymouse')->default(False);
@@ -24,7 +24,7 @@ class CreateRepliesTable extends Migration
         $table->softDeletes();
       });
     }
-    
+
     /**
      * Reverse the migrations.
      *

@@ -14,8 +14,8 @@ class CreateReportAnswersTable extends Migration
     {
       Schema::create('report_answers', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('user_id');
-        $table->integer('answer_id');
+        $table->unsignedinteger('user_id');
+        $table->unsignedinteger('answer_id');
         $table->timestamps();
       });
     }

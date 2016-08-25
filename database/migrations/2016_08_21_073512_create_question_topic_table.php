@@ -14,8 +14,8 @@ class CreateQuestionTopicTable extends Migration
     {
       Schema::create('question_topic', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('question_id');
-        $table->integer('topic_id');
+        $table->unsignedinteger('question_id');
+        $table->unsignedinteger('topic_id');
         $table->timestamps();
       });
     }
