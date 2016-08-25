@@ -54,7 +54,7 @@
     <form method="POST" action="{{ route('answers.store', $question->slug) }}" style="margin-bottom: 0">
       {{ csrf_field() }}
       <fieldset>
-        <textarea name="answer" rows="8" cols="40"></textarea>
+        <textarea name="answer" rows="8" cols="40" required>{{ old('answer') }}</textarea>
         <button type="submit" class="button">Answer</button>
         <div class="float-right">
           <input name="anonymouse" id="anonymouse" type="checkbox">

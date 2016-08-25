@@ -17,6 +17,8 @@ class AnswerController extends Controller
 {
   public function store($slug, Request $request)
   {
+    $this->validate($request, ['answer' => 'required']);
+
     $question = Question::where('slug', '=', $slug)->first();
 
     if ($question) {
