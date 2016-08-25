@@ -27,7 +27,12 @@
       ?>
     </small>
     <p class="list-question-title"><a href="/{{ $question->slug }}">{{ $question->question }}</a></p>
-    <small>{{ $question->answers->count() }} answers - {{ $question->created_at->diffForHumans() }}</small>
+    <small>
+      {{ $question->answers->count() }} answers -
+      <time class="timeago" datetime="{{ $question->created_at->toIso8601String() }}">
+        {{ $question->created_at->diffForHumans() }}
+      </time>
+    </small>
     @if ($question->answers->count() > 0)
       <?php $answer = $question->best_answer(); ?>
       @if (count($answer) > 0)

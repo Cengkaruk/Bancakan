@@ -23,7 +23,13 @@
           echo implode(', ', $topics);
           ?>
           <br>
-          <small>{{ $question->answers->count() }} answers - {{ $question->created_at->diffForHumans() }}</small><br>
+          <small>
+            {{ $question->answers->count() }} answers -
+            <time class="timeago" datetime="{{ $question->created_at->toIso8601String() }}">
+              {{ $question->created_at->diffForHumans() }}
+            </time>
+          </small>
+          <br>
           @if ($question->anonymouse)
           <strong>Anonymouse</strong>
           @else
