@@ -25,7 +25,7 @@
           <br>
           <small>
             {{ $question->answers->count() }} answers -
-            <time class="timeago" datetime="{{ $question->created_at->toIso8601String() }}">
+            <time class="timeago" datetime="{{ $question->created_at->toIso8601String() }}" title="{{ $question->created_at->toDayDateTimeString() }}">
               {{ $question->created_at->diffForHumans() }}
             </time>
           </small>
@@ -105,7 +105,10 @@
         @endif
         <a href="#" class="show-reply-answer-box">Reply</a> -
         <a href="{{ (Auth::check()) ? route('answers.vote', [$question->slug, $answer->id]) : '#' }}">Upvote ({{ $answer->votes->count() }})</a> -
-        <a href="{{ (Auth::check()) ? route('answers.report', [$question->slug, $answer->id]) : '#' }}">Report</a>
+        <a href="{{ (Auth::check()) ? route('answers.report', [$question->slug, $answer->id]) : '#' }}">Report</a> -
+        <time class="timeago" datetime="{{ $answer->created_at->toIso8601String() }}" title="{{ $answer->created_at->toDayDateTimeString() }}">
+          {{ $answer->created_at->diffForHumans() }}
+        </time>
       </small>
     </div>
     <div class="list-reply">
@@ -163,7 +166,10 @@
                 @endif
                 @endif
                 <a href="#" class="show-reply-reply-box">Reply</a> -
-                <a href="{{ (Auth::check()) ? route('replies.report', [$question->slug, $answer->id, $reply->id]) : '#' }}">Report</a>
+                <a href="{{ (Auth::check()) ? route('replies.report', [$question->slug, $answer->id, $reply->id]) : '#' }}">Report</a> -
+                <time class="timeago" datetime="{{ $reply->created_at->toIso8601String() }}" title="{{ $reply->created_at->toDayDateTimeString() }}">
+                  {{ $reply->created_at->diffForHumans() }}
+                </time>
               </small>
             </div>
           </div>
