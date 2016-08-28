@@ -15,9 +15,9 @@ class ProfileController extends Controller
   {
     if ($username) {
       if (is_numeric($username)) {
-        $profile = User::find($username);
+        $profile = User::findOrFail($username);
       } else {
-        $profile = User::where('username', '=', $username)->first();
+        $profile = User::where('username', '=', $username)->firstOrFail();
       }
     } else {
       $profile = Auth::user();
