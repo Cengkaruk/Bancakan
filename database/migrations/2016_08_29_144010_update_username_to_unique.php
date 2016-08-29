@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionTopicTable extends Migration
+class UpdateUsernameToUnique extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +13,8 @@ class CreateQuestionTopicTable extends Migration
      */
     public function up()
     {
-      Schema::create('question_topic', function (Blueprint $table) {
-        $table->increments('id');
-        $table->integer('question_id');
-        $table->integer('topic_id');
-        $table->timestamps();
+      Schema::table('users', function (Blueprint $table) {
+        $table->string('username')->unique()->change();
       });
     }
 
@@ -27,6 +25,8 @@ class CreateQuestionTopicTable extends Migration
      */
     public function down()
     {
-      Schema::drop('question_topic');
+      Schema::table('users', function (Blueprint $table) {
+        $table->string('username')->change();
+      });
     }
 }

@@ -14,8 +14,8 @@ class CreateAnswersTable extends Migration
   {
     Schema::create('answers', function (Blueprint $table) {
       $table->increments('id');
-      $table->unsignedinteger('user_id');
-      $table->unsignedinteger('question_id');
+      $table->integer('user_id');
+      $table->integer('question_id');
       $table->text('answer');
       $table->boolean('blocked')->default(False);
       $table->boolean('anonymouse')->default(False);
