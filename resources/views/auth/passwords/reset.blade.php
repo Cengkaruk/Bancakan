@@ -4,7 +4,7 @@
 <div class="row signup">
   <div class="column column-33">
     <h4>Reset Password</h4>
-    <form method="POST" action="{{ url('/password/email') }}">
+    <form method="POST" action="{{ url('/password/reset') }}">
       {{ csrf_field() }}
       <input type="hidden" name="token" value="{{ $token }}">
       <fieldset>
