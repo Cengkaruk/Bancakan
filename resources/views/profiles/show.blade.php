@@ -46,7 +46,13 @@
     @if ($profile->id == Auth::user()->id)
     <a href="{{ route('profiles.edit') }}" class="button">Edit Profile</a>
     <a href="{{ route('profiles.password') }}" class="button button-outline">Change Password</a>
-    <a href="{{ url('/logout') }}" class="button button-outline button-outline-danger">Logout</a>
+    <a href="{{ url('/logout') }}" class="button button-outline button-outline-danger"
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+      Logout
+    </a>
+    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
     @endif
     @endif
   </div>
