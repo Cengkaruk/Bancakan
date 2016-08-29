@@ -10,6 +10,7 @@ use App\Question;
 use App\Answer;
 use App\Reply;
 use App\ReportReply;
+use App\Notifications\ReplyNotification;
 
 use Auth;
 
@@ -29,6 +30,12 @@ class ReplyController extends Controller
       $reply->reply = $request->input('reply');
       $reply->anonymouse = ($request->input('anonymouse')) ? $request->input('anonymouse') : False;
       $reply->save();
+
+      $reply = $reply->fresh('user', 'answer.question');
+
+      if ($reply->user_id != $reply->answer->user_id) {
+        $answer->user->notify(new ReplyNotification($reply));
+      }
     }
 
     return redirect()->back();
@@ -82,6 +89,12 @@ class ReplyController extends Controller
       $reply->reply = $request->input('reply');
       $reply->anonymouse = ($request->input('anonymouse')) ? $request->input('anonymouse') : False;
       $reply->save();
+
+      $reply = $reply->fresh('user', 'replied.user', 'replied.answer.question');
+
+      if ($reply->user_id != $reply->replied->user_id) {
+        $reply->replied->user->notify(new ReplyNotification($reply));
+      }
     }
 
     return redirect()->back();

@@ -60,6 +60,16 @@ Route::group(['middleware' => ['auth']], function () {
     'uses' => 'NotifController@index'
   ]);
 
+  Route::post('/notification/read_all', [
+    'as' => 'notifications.read_all',
+    'uses' => 'NotifController@readAll'
+  ]);
+
+  Route::get('/notification/{id}/read', [
+    'as' => 'notifications.read',
+    'uses' => 'NotifController@read'
+  ]);
+
   Route::get('/{slug}/report', [
     'as' => 'questions.report',
     'uses' => 'QuestionController@report'
