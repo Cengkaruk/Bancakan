@@ -10,6 +10,11 @@ use Illuminate\Contracts\Auth\PasswordBroker;
 
 class ForgotPasswordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function showLinkRequestForm()
     {
         return view('auth.passwords.email');
