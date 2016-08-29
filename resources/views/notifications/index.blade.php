@@ -31,8 +31,7 @@
       	@if (str_contains($notification->type, 'Reply'))
 	        was replied your message
 	        @php
-	        dd($notification->data);
-						$slug = isset($notification->data['answer']) ? $notification->data['answer']['question']['slug'] : $notification->data['reply'];
+				$slug = isset($notification->data['answer']) ? $notification->data['answer']['question']['slug'] : $notification->data['reply'];
 	        @endphp
 	        <a href="{{ route('questions.show', ['slug' => $slug]) }}">
 	        	"{{ $notification->data['reply'] }}"
