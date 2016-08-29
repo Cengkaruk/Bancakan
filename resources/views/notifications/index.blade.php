@@ -5,10 +5,14 @@
   <div class="column">
     <h4>Notifications</h4>
 
+        @if (Auth::user()->unreadNotifications->count())
 		<form method="POST" action="{{ route('notifications.read_all') }}">
 			{{ csrf_field() }}
-    	<button type="submit">Mark all as read</button>
-    </form>
+        	<button type="submit">Mark all as read</button>
+        </form>
+        @else
+            - Empty -
+        @endif
 
     <ul>
       @foreach(Auth::user()->unreadNotifications as $notification)
