@@ -10,6 +10,7 @@ use App\Question;
 use App\Answer;
 use App\VoteAnswer;
 use App\ReportAnswer;
+use App\Notifications\AnswerNotification;
 
 use Auth;
 
@@ -28,6 +29,12 @@ class AnswerController extends Controller
       $answer->answer = $request->input('answer');
       $answer->anonymouse = ($request->input('anonymouse')) ? $request->input('anonymouse') : False;
       $answer->save();
+
+      $answer = $answer->fresh('user', 'question');
+
+      if ($answer->user_id != $answer->question->user_id) {
+        $question->user->notify(new AnswerNotification($answer));
+      }
     }
 
     return redirect()->back();

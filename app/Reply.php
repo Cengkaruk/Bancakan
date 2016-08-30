@@ -16,6 +16,16 @@ class Reply extends Model
     return $this->belongsTo('App\User');
   }
 
+  public function answer()
+  {
+    return $this->belongsTo('App\Answer');
+  }
+
+  public function replied()
+  {
+    return $this->belongsTo('App\Reply', 'reply_id');
+  }
+
   public function replies()
   {
     return $this->hasMany('App\Reply');
