@@ -9,8 +9,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Bancakan">
-  <meta name="description" content="Bancakan - Startup advice from the community">
-  <title>Bancakan - Startup advice from the community</title>
+  <meta name="description" content="{{ Meta::get('description') }}">
+  <title>{{ Meta::get('title') }}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">

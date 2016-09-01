@@ -12,6 +12,7 @@ use App\ReportQuestion;
 use App\VoteQuestion;
 
 use Auth;
+use Meta;
 
 class QuestionController extends Controller
 {
@@ -26,6 +27,9 @@ class QuestionController extends Controller
   public function show($slug)
   {
     $question = Question::where('slug', '=', $slug)->first();
+
+    Meta::set('title', $question->question .' - Bancakan');
+    Meta::set('description', str_limit($question->detail, 160));
 
     return view('questions.show')
       ->with('question', $question);

@@ -168,6 +168,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Eusonlito\LaravelMeta\MetaServiceProvider::class,
     ],
 
     /*
@@ -214,6 +215,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Meta' => Eusonlito\LaravelMeta\Facade::class,
     ],
 
 ];
