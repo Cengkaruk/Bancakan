@@ -34,6 +34,7 @@
           <option value="Education">Education</option>
           <option value="Email Marketing">Email Marketing</option>
           <option value="Entrepreneurship">Entrepreneurship</option>
+          <option value="Engineering">Engineering</option>
           <option value="Finance">Finance</option>
           <option value="Financial Consulting">Financial Consulting</option>
           <option value="Getting Started">Getting Started</option>
@@ -64,6 +65,7 @@
           <option value="Social Media Marketing">Social Media Marketing</option>
           <option value="Software Development">Software Development</option>
           <option value="Strategy">Strategy</option>
+          <option value="Startup">Startup</option>
           <option value="User Experience">User Experience</option>
           <option value="Venture Capital">Venture Capital</option>
         </select>
